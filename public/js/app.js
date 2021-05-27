@@ -6743,28 +6743,23 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var cookies = new universal_cookie__WEBPACK_IMPORTED_MODULE_5__.default();
 
 var App = function App() {
+  var _localStorage$getItem, _cookies$get;
+
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
       _useState2 = _slicedToArray(_useState, 2),
       user = _useState2[0],
       setUser = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("light"),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((_localStorage$getItem = localStorage.getItem("theme")) !== null && _localStorage$getItem !== void 0 ? _localStorage$getItem : "light"),
       _useState4 = _slicedToArray(_useState3, 2),
       theme = _useState4[0],
       setTheme = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((_cookies$get = cookies.get("token")) !== null && _cookies$get !== void 0 ? _cookies$get : null),
       _useState6 = _slicedToArray(_useState5, 2),
       token = _useState6[0],
-      setToken = _useState6[1]; //mounted
+      setToken = _useState6[1]; //theme changed
 
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var themeLocal = localStorage.getItem("theme");
-    setTheme(themeLocal !== null && themeLocal !== void 0 ? themeLocal : "light");
-    var tokenLocal = cookies.get("token");
-    setToken(tokenLocal !== null && tokenLocal !== void 0 ? tokenLocal : null);
-  }, []); //theme changed
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     localStorage.setItem("theme", theme);
@@ -6837,14 +6832,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var _middlewares_AuthComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./middlewares/AuthComponent */ "./resources/js/src/middlewares/AuthComponent.jsx");
 /* harmony import */ var _middlewares_AuthMiddleware__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./middlewares/AuthMiddleware */ "./resources/js/src/middlewares/AuthMiddleware.jsx");
 /* harmony import */ var _middlewares_GuestComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./middlewares/GuestComponent */ "./resources/js/src/middlewares/GuestComponent.jsx");
 /* harmony import */ var _middlewares_GuestMiddleware__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./middlewares/GuestMiddleware */ "./resources/js/src/middlewares/GuestMiddleware.jsx");
 /* harmony import */ var _pages_HomeGuest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/HomeGuest */ "./resources/js/src/pages/HomeGuest.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Login */ "./resources/js/src/pages/Login.jsx");
+/* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Register */ "./resources/js/src/pages/Register.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
  //middleware
 
 
@@ -6855,14 +6852,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 var Routes = function Routes() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.BrowserRouter, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Switch, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
         exact: true,
         path: "/",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_pages_HomeGuest__WEBPACK_IMPORTED_MODULE_4__.default, {})
-      })
+        component: _pages_HomeGuest__WEBPACK_IMPORTED_MODULE_4__.default
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_middlewares_GuestMiddleware__WEBPACK_IMPORTED_MODULE_3__.default, {
+        path: "/login",
+        component: _pages_Login__WEBPACK_IMPORTED_MODULE_5__.default
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_middlewares_GuestMiddleware__WEBPACK_IMPORTED_MODULE_3__.default, {
+        path: "/register",
+        component: _pages_Register__WEBPACK_IMPORTED_MODULE_6__.default
+      })]
     })
   });
 };
@@ -6934,6 +6940,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginForm = function LoginForm() {
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
     className: "bg-white rounded-lg py-4 px-6 shadow-xl transition duration-300 w-96 space-y-3 dark:bg-gray-700",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
@@ -6951,9 +6961,7 @@ var LoginForm = function LoginForm() {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
       className: "flex flex-col space-y-3",
-      onSubmit: function onSubmit(e) {
-        e.preventDefault();
-      },
+      onSubmit: handleSubmit,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
         className: "form-input",
         type: "email",
@@ -7044,18 +7052,24 @@ var Navbar = function Navbar(_ref) {
             children: "SmartLolo Social"
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "flex space-x-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_minors_Switcher__WEBPACK_IMPORTED_MODULE_2__.default, {
-            checked: dark,
-            onChange: setDark,
-            className: "mr-3"
+          className: "flex space-x-3 items-center",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "rounded-full bg-indigo-500 px-1 py-1 flex  items-center space-x-1",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              className: "text-sm",
+              children: dark ? "\uD83C\uDF1B" : "\uD83C\uDF1E"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_minors_Switcher__WEBPACK_IMPORTED_MODULE_2__.default, {
+              checked: dark,
+              onChange: setDark,
+              className: "mr-3"
+            })]
           }), login && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
             to: "/login",
             className: "font-semibold text-blue-50 ",
             children: "Login"
           }), register && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
             to: "/register",
-            className: "font-semibold text-blue-50",
+            className: "font-semibold text-white px-3 py-1 bg-green-600 hover:bg-green-700 rounded",
             children: "Register"
           })]
         })]
@@ -7073,6 +7087,135 @@ var Navbar = function Navbar(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Navbar);
+
+/***/ }),
+
+/***/ "./resources/js/src/components/RegisterForm.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/src/components/RegisterForm.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var RegisterForm = function RegisterForm() {
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+    className: "bg-white rounded-lg py-4 px-6 shadow-xl transition duration-300 space-y-3 dark:bg-gray-700",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+      className: "flex justify-between items-center",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h4", {
+        className: "font-semibold text-gray-900 text-lg dark:text-blue-100",
+        children: "Register"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "text-black dark:text-white",
+        children: ["or", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          to: "/login",
+          className: "link",
+          children: "login."
+        })]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+      className: "flex flex-col space-y-3 py-3",
+      onSubmit: handleSubmit,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "flex flex-col space-y-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+          htmlFor: "first-name",
+          className: "text-black dark:text-white mx-2",
+          children: "Full Name"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+          className: "flex flex-row space-x-2",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            className: "form-input",
+            type: "text",
+            name: "first-name",
+            id: "first-name",
+            placeholder: "First name"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+            className: "form-input",
+            type: "text",
+            name: "last-name",
+            id: "last-name",
+            placeholder: "Last name"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "flex flex-col space-y-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+          htmlFor: "email",
+          className: "text-black dark:text-white mx-2",
+          children: "Email"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          className: "form-input",
+          type: "email",
+          name: "email",
+          id: "email",
+          placeholder: "Your email here..."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "flex flex-col space-y-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+          htmlFor: "password",
+          className: "text-black dark:text-white mx-2",
+          children: "Password"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          className: "form-input",
+          type: "password",
+          name: "password",
+          id: "password",
+          placeholder: "Your password here..."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "flex flex-col space-y-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("label", {
+          htmlFor: "re-password",
+          className: "text-black dark:text-white mx-2",
+          children: "Re-type Password"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          className: "form-input",
+          type: "password",
+          name: "re-password",
+          id: "re-password",
+          placeholder: "Re-type your password here..."
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
+        className: "flex flex-row items-center mx-2 space-x-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          type: "checkbox",
+          name: "agree",
+          id: "agree"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
+          htmlFor: "agree",
+          className: "text-black dark:text-white",
+          children: ["I agree to the", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+            to: "/privacy-policy",
+            className: "link",
+            children: "terms and privacy policy"
+          })]
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("button", {
+        className: "btn",
+        type: "submit",
+        children: "Register"
+      })]
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RegisterForm);
 
 /***/ }),
 
@@ -7099,7 +7242,7 @@ var Switcher = function Switcher(_ref) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_0__.Switch, {
     checked: checked,
     onChange: onChange,
-    className: "".concat(checked ? "bg-blue-600" : "bg-gray-200", " relative inline-flex items-center h-6 rounded-full w-11 transition duration-300 focus:outline-none ").concat(className),
+    className: "".concat(checked ? "bg-blue-700 hover:bg-blue-800" : "bg-gray-200 hover:bg-gray-300", " relative inline-flex items-center h-6 rounded-full w-11 transition duration-300 focus:outline-none ").concat(className),
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
       className: "".concat(checked ? "translate-x-6" : "translate-x-1 border border-blue-300", " inline-block w-4 h-4 transform bg-white rounded-full transition duration-300")
     })
@@ -7369,6 +7512,106 @@ var HomeGuest = function HomeGuest() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HomeGuest);
+
+/***/ }),
+
+/***/ "./resources/js/src/pages/Login.jsx":
+/*!******************************************!*\
+  !*** ./resources/js/src/pages/Login.jsx ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Navbar */ "./resources/js/src/components/Navbar.jsx");
+/* harmony import */ var _components_LoginForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/LoginForm */ "./resources/js/src/components/LoginForm.jsx");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/src/components/Footer.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+ //components
+
+
+
+
+
+
+
+var Login = function Login() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "w-full min-h-full dark:bg-gray-900",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, {
+      login: false,
+      register: true
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "flex flex-col items-center my-5 space-y-5",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+        className: "text-2xl text-gray-900 dark:text-blue-50 font-bold",
+        children: "SmartLolo Social Logo"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_LoginForm__WEBPACK_IMPORTED_MODULE_2__.default, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {})]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+
+/***/ }),
+
+/***/ "./resources/js/src/pages/Register.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/src/pages/Register.jsx ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Navbar */ "./resources/js/src/components/Navbar.jsx");
+/* harmony import */ var _components_RegisterForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/RegisterForm */ "./resources/js/src/components/RegisterForm.jsx");
+/* harmony import */ var _components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Footer */ "./resources/js/src/components/Footer.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+ //components
+
+
+
+
+
+
+
+var Register = function Register() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    className: "w-full min-h-full dark:bg-gray-900",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, {
+      login: true,
+      register: false
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "flex flex-col items-center my-5 space-y-5",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+        className: "text-2xl text-gray-900 dark:text-blue-50 font-bold",
+        children: "SmartLolo Social Logo"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "container mx-auto flex flex-col-reverse md:flex-row justify-center items-center",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "w-96 flex flex-col",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+            className: "text-4xl font-bold text-gray-800 dark:text-blue-100",
+            children: "Hey!"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            className: "text-black dark:text-white text-lg font-semibold",
+            children: "Wanna try SmartLolo Social?"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_RegisterForm__WEBPACK_IMPORTED_MODULE_2__.default, {})]
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {})]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Register);
 
 /***/ }),
 

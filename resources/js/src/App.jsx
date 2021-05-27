@@ -11,17 +11,10 @@ const cookies = new Cookies();
 
 const App = () => {
     const [user, setUser] = useState(null);
-    const [theme, setTheme] = useState("light");
-    const [token, setToken] = useState(null);
-
-    //mounted
-    useEffect(() => {
-        let themeLocal = localStorage.getItem("theme");
-        setTheme(themeLocal ?? "light");
-
-        let tokenLocal = cookies.get("token");
-        setToken(tokenLocal ?? null);
-    }, []);
+    const [theme, setTheme] = useState(
+        localStorage.getItem("theme") ?? "light"
+    );
+    const [token, setToken] = useState(cookies.get("token") ?? null);
 
     //theme changed
     useEffect(() => {

@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
 const LoginForm = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <div className="bg-white rounded-lg py-4 px-6 shadow-xl transition duration-300 w-96 space-y-3 dark:bg-gray-700">
             <div className="flex justify-between items-center">
@@ -14,12 +18,7 @@ const LoginForm = () => {
                     </Link>
                 </div>
             </div>
-            <form
-                className="flex flex-col space-y-3"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                }}
-            >
+            <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
                 <input
                     className="form-input"
                     type="email"

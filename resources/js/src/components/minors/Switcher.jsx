@@ -5,7 +5,9 @@ const Switcher = ({ checked, onChange, className }) => (
         checked={checked}
         onChange={onChange}
         className={`${
-            checked ? "bg-blue-600" : "bg-gray-200"
+            checked
+                ? "bg-blue-700 hover:bg-blue-800"
+                : "bg-gray-200 hover:bg-gray-300"
         } relative inline-flex items-center h-6 rounded-full w-11 transition duration-300 focus:outline-none ${className}`}
     >
         <span

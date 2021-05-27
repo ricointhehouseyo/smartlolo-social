@@ -6,14 +6,16 @@ import GuestComponent from "./middlewares/GuestComponent";
 import GuestMiddleware from "./middlewares/GuestMiddleware";
 //pages
 import HomeGuest from "./pages/HomeGuest";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const Routes = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/">
-                    <HomeGuest />
-                </Route>
+                <Route exact path="/" component={HomeGuest} />
+                <GuestMiddleware path="/login" component={Login} />
+                <GuestMiddleware path="/register" component={Register} />
             </Switch>
         </Router>
     );

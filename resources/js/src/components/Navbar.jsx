@@ -16,12 +16,17 @@ const Navbar = ({ login, register }) => {
                     <h2 className="font-bold text-xl text-white">
                         <Link to="/">SmartLolo Social</Link>
                     </h2>
-                    <div className="flex space-x-3">
-                        <Switcher
-                            checked={dark}
-                            onChange={setDark}
-                            className="mr-3"
-                        />
+                    <div className="flex space-x-3 items-center">
+                        <div className="rounded-full bg-indigo-500 px-1 py-1 flex  items-center space-x-1">
+                            <span className="text-sm">
+                                {dark ? `🌛` : `🌞`}
+                            </span>
+                            <Switcher
+                                checked={dark}
+                                onChange={setDark}
+                                className="mr-3"
+                            />
+                        </div>
                         {login && (
                             <Link
                                 to="/login"
@@ -36,7 +41,7 @@ const Navbar = ({ login, register }) => {
                         {register && (
                             <Link
                                 to="/register"
-                                className="font-semibold text-blue-50"
+                                className="font-semibold text-white px-3 py-1 bg-green-600 hover:bg-green-700 rounded"
                             >
                                 Register
                             </Link>
