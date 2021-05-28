@@ -22,3 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', LoginController::class);
 Route::post('/register', RegisterController::class);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post('/user', function (Request $request) {
+        return response()->json(['user' => $request->user()]);
+    });
+});

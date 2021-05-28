@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
+import Env from "./Env";
 //third parties
 import Cookies from "universal-cookie";
 //context
@@ -25,13 +27,29 @@ const App = () => {
     //token changed
     useEffect(() => {
         if (token !== null) {
-            //codes goes here
-            cookies.set("token", token);
+            axios
+                .post(`${Env.api}/user`, null, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                .then(({ data }) => {
+                    setUser(data.user);
+                    cookies.set("token", token);
+                })
+                .catch(() => {
+                    setUser(false);
+                    cookies.remove("token");
+                });
         } else {
             setUser(false);
             cookies.remove("token");
         }
     }, [token]);
+
+    useEffect(() => {
+        console.log(user);
+    }, [user]);
 
     if (user == null) {
         return (

@@ -13,7 +13,9 @@ const Routes = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={HomeGuest} />
+                <Route exact path="/">
+                    <HomeGuest />
+                </Route>
                 <GuestMiddleware path="/login" component={Login} />
                 <GuestMiddleware path="/register" component={Register} />
             </Switch>
