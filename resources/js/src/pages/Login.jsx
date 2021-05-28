@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 //components
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavbarGuest";
 import LoginForm from "../components/LoginForm";
 import Footer from "../components/Footer";
 

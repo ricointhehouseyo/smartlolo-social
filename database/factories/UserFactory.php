@@ -25,6 +25,7 @@ class UserFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
+            'profile_picture' => "profile.jpg",
             'username' => Str::slug($this->faker->name().rand(100,999),'_'),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),

@@ -8,6 +8,8 @@ import GuestMiddleware from "./middlewares/GuestMiddleware";
 import HomeGuest from "./pages/HomeGuest";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+//auth pages
+import Profile from "./pages/Profile";
 
 const Routes = () => {
     return (
@@ -18,6 +20,8 @@ const Routes = () => {
                 </Route>
                 <GuestMiddleware path="/login" component={Login} />
                 <GuestMiddleware path="/register" component={Register} />
+
+                <AuthMiddleware path="/profile" component={Profile} />
             </Switch>
         </Router>
     );

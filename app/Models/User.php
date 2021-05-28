@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
+        'profile_picture',
         'username',
         'email',
         'password',
@@ -44,8 +45,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function name()
+    public function getNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+    public function getPictureAttribute(){
+        return asset("img/profilepic/".$this->profile_picture);
+    }
+    public function get(){
+        $data=$this;
+        $data['name']=$this->name;
+        $data['picture']=$this->picture;
+        return $data;
     }
 }

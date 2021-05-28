@@ -36,6 +36,7 @@ const App = () => {
                 .then(({ data }) => {
                     setUser(data.user);
                     cookies.set("token", token);
+                    console.log(data.user);
                 })
                 .catch(() => {
                     setUser(false);

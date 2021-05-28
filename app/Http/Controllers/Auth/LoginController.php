@@ -24,8 +24,8 @@ class LoginController extends Controller
         if ($user && Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Authorized',
-                'user' => $user,
-                'token' => $user->createToken("{$user->name()}-{$user->email}-{" . now() . "}")->plainTextToken
+                'user' => $user->get(),
+                'token' => $user->createToken("{$user->name}-{$user->email}-{" . now() . "}")->plainTextToken
             ]);
         }
 
