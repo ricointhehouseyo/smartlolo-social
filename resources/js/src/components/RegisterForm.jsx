@@ -1,5 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Env from "../Env";
 
 const RegisterForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -8,10 +10,40 @@ const RegisterForm = () => {
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
     const [agree, setAgree] = useState(false);
-    const [error, setError] = useState({});
+    const [error, setError] = useState("");
+    const [processing, setProcessing] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setError("");
+        if (agree) {
+            setProcessing(true);
+            axios
+                .post(`${Env.api}/register`, {
+                    first_name: firstName,
+                    last_name: lastName,
+                    email,
+                    password,
+                    password_confirmation: rePassword,
+                })
+                .then(() => {
+                    alert("Account created! please login");
+                    window.location = Env.host;
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        if (err.response.data.errors) {
+                            setError(err.response.data.errors);
+                            console.error(err.response.data.errors);
+                        } else {
+                            setError(err.response.data);
+                        }
+                    }
+                })
+                .finally(() => setProcessing(false));
+        } else {
+            setError({ message: "Please check our terms and privacy policy!" });
+        }
     };
 
     return (
@@ -31,7 +63,14 @@ const RegisterForm = () => {
                 className="flex flex-col space-y-3 py-3"
                 onSubmit={handleSubmit}
             >
-                <div className="flex flex-col space-y-2">
+                {error.message && (
+                    <div className="p-1 bg-red-100 border border-red-500 flex">
+                        <small className="text-sm text-red-500 ml-2">
+                            {error.message}
+                        </small>
+                    </div>
+                )}
+                <div className="flex flex-col space-y-1">
                     <label
                         htmlFor="first-name"
                         className="text-black dark:text-white mx-2"
@@ -56,8 +95,17 @@ const RegisterForm = () => {
                             onChange={(e) => setLastName(e.target.value)}
                         />
                     </div>
+                    {error.first_name &&
+                        error.first_name.map((err) => (
+                            <small
+                                className="text-sm text-red-500 dark:text-red-300 ml-2"
+                                key={err}
+                            >
+                                {err}
+                            </small>
+                        ))}
                 </div>
-                <div className="flex flex-col space-y-2">
+                <div className="flex flex-col space-y-1">
                     <label
                         htmlFor="email"
                         className="text-black dark:text-white mx-2"
@@ -72,8 +120,17 @@ const RegisterForm = () => {
                         placeholder="Your email here..."
                         onChange={(e) => setEmail(e.target.value)}
                     />
+                    {error.email &&
+                        error.email.map((err) => (
+                            <small
+                                className="text-sm text-red-500 dark:text-red-300 ml-2"
+                                key={err}
+                            >
+                                {err}
+                            </small>
+                        ))}
                 </div>
-                <div className="flex flex-col space-y-2">
+                <div className="flex flex-col space-y-1">
                     <label
                         htmlFor="password"
                         className="text-black dark:text-white mx-2"
@@ -88,8 +145,17 @@ const RegisterForm = () => {
                         placeholder="Your password here..."
                         onChange={(e) => setPassword(e.target.value)}
                     />
+                    {error.password &&
+                        error.password.map((err) => (
+                            <small
+                                className="text-sm text-red-500 dark:text-red-300 ml-2"
+                                key={err}
+                            >
+                                {err}
+                            </small>
+                        ))}
                 </div>
-                <div className="flex flex-col space-y-2">
+                <div className="flex flex-col space-y-1">
                     <label
                         htmlFor="re-password"
                         className="text-black dark:text-white mx-2"
@@ -122,8 +188,12 @@ const RegisterForm = () => {
                         </Link>
                     </label>
                 </div>
-                <button className="btn" type="submit">
-                    Register
+                <button
+                    className={processing ? `btn-disabled` : `btn`}
+                    disabled={processing}
+                    type="submit"
+                >
+                    {processing ? `Signing you in...` : `Register`}
                 </button>
             </form>
         </div>

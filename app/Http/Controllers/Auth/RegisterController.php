@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -21,6 +22,7 @@ class RegisterController extends Controller
         User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
+            'username' => Str::slug("$request->first_name $request->last_name".rand(100,999),'_'),
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);

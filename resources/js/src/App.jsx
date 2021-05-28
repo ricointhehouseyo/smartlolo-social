@@ -47,10 +47,6 @@ const App = () => {
         }
     }, [token]);
 
-    useEffect(() => {
-        console.log(user);
-    }, [user]);
-
     if (user == null) {
         return (
             <div className="w-full h-screen flex flex-col justify-center items-center bg-blue-900 text-white">

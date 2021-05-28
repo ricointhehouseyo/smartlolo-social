@@ -19,7 +19,6 @@ const LoginForm = () => {
         axios
             .post(`${Env.api}/login`, { email, password })
             .then(({ data }) => {
-                console.log(data);
                 setToken(data.token);
                 setUser(data.user);
                 window.location = Env.host;
@@ -51,6 +50,13 @@ const LoginForm = () => {
                 </div>
             </div>
             <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
+                {error.message && (
+                    <div className="p-1 bg-red-100 border border-red-500 flex">
+                        <small className="text-sm text-red-500 ml-2">
+                            {error.message}
+                        </small>
+                    </div>
+                )}
                 <div className="flex flex-col space-y-1">
                     <input
                         className="form-input"
@@ -89,11 +95,6 @@ const LoginForm = () => {
                             </small>
                         ))}
                 </div>
-                {error.message && (
-                    <small className="text-sm text-red-500 dark:text-red-300 ml-2">
-                        {error.message}
-                    </small>
-                )}
                 <button
                     className={processing ? `btn-disabled` : `btn`}
                     disabled={processing}

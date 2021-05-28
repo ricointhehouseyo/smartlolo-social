@@ -30,7 +30,7 @@ class LoginController extends Controller
         }
 
         return response()->json([
-            'message' => 'Email and password combinations are incorrect.'
+            'message' => 'The email and password combinations are incorrect.'
         ], 401);
     }
 }
