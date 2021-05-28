@@ -17,6 +17,9 @@ const Routes = () => {
             <Switch>
                 <Route exact path="/">
                     <HomeGuest />
+                    <AuthComponent>
+                        <Profile />
+                    </AuthComponent>
                 </Route>
                 <GuestMiddleware path="/login" component={Login} />
                 <GuestMiddleware path="/register" component={Register} />

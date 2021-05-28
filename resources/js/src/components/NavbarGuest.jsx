@@ -9,7 +9,7 @@ const Navbar = ({ login, register }) => (
                     <Link to="/">SmartLolo Social</Link>
                 </h2>
                 <div className="flex space-x-3 items-center">
-                    <ThemeSwitcher />
+                    <ThemeSwitcher icon={true} />
                     {login && (
                         <Link
                             to="/login"
@@ -18,9 +18,6 @@ const Navbar = ({ login, register }) => (
                             Login
                         </Link>
                     )}
-                    {/* {login && register && (
-                            <div className=" w-0.5 bg-white rounded-md"></div>
-                        )} */}
                     {register && (
                         <Link
                             to="/register"
