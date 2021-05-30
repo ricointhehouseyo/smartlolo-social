@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 //components
+import RootFragment from "../RootFragment";
 import Navbar from "../components/NavbarGuest";
 import RegisterForm from "../components/RegisterForm";
 import Footer from "../components/Footer";
 
 const Register = () => {
     return (
-        <div className="w-full min-h-full dark:bg-gray-900">
+        <RootFragment className="w-full min-h-full dark:bg-gray-900">
             <Navbar login={true} register={false} />
             <div className="flex flex-col items-center my-5 space-y-5">
                 <h1 className="text-2xl text-gray-900 dark:text-blue-50 font-bold">
@@ -25,7 +26,7 @@ const Register = () => {
                 </div>
             </div>
             <Footer />
-        </div>
+        </RootFragment>
     );
 };
 

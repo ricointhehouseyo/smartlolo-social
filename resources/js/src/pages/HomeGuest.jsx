@@ -2,11 +2,12 @@ import GuestComponent from "../middlewares/GuestComponent";
 import Navbar from "../components/NavbarGuest";
 import LoginForm from "../components/LoginForm";
 import Footer from "../components/Footer";
+import RootFragment from "../RootFragment";
 
 const HomeGuest = () => {
     return (
         <GuestComponent>
-            <div className="min-h-screen dark:bg-gray-800">
+            <RootFragment className="min-h-screen dark:bg-gray-800">
                 <Navbar login={true} register={true} />
                 <div className="container mx-auto flex flex-col">
                     <div className="my-3">
@@ -62,7 +63,7 @@ const HomeGuest = () => {
                     </div>
                 </div>
                 <Footer />
-            </div>
+            </RootFragment>
         </GuestComponent>
     );
 };
