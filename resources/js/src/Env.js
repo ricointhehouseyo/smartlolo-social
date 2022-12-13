@@ -1,4 +1,4 @@
-const host = `http://127.0.0.1:8000`;
+const host = `https://www.smartlolo.smeatech.com/`;
 const Env = {
     api: `${host}/api`,
     host: host,
