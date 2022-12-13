@@ -6746,7 +6746,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var host = "https://www.smartlolo.smeatech.com/";
+var host = "https://www.smartlolo.smeatech.com";
 var Env = {
   api: "".concat(host, "/api"),
   host: host
