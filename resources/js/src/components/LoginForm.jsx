@@ -100,7 +100,7 @@ const LoginForm = () => {
                     disabled={processing}
                     type="submit"
                 >
-                    {processing ? `Loggening in...` : `Login`}
+                    {processing ? `Logging in...` : `Login`}
                 </button>
             </form>
         </div>

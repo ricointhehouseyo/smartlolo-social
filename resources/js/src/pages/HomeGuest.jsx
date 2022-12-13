@@ -7,9 +7,9 @@ import RootFragment from "../RootFragment";
 const HomeGuest = () => {
     return (
         <GuestComponent>
-            <RootFragment className="min-h-screen dark:bg-gray-800">
+            <RootFragment className="min-h-screen dark:bg-gray-800 flex flex-col">
                 <Navbar login={true} register={true} />
-                <div className="container mx-auto flex flex-col">
+                <div className="container mx-auto flex flex-col flex-grow">
                     <div className="my-3">
                         <h1 className="text-2xl font-bold text-black dark:text-blue-200 ">
                             SmartLolo Social Logo
@@ -36,27 +36,7 @@ const HomeGuest = () => {
                                 quod commodi laboriosam illum incidunt
                                 temporibus suscipit corporis. Quasi officia vero
                                 aliquam, neque sint laborum nesciunt pariatur
-                                blanditiis quisquam. Tempore, vel possimus ex,
-                                labore dolore sequi eligendi eaque libero cumque
-                                in veniam dolores, odio distinctio aspernatur
-                                maiores? Odio cum asperiores veritatis non eius
-                                voluptatum sed adipisci reprehenderit tenetur
-                                tempora totam sunt, nostrum incidunt! Quod,
-                                ducimus laborum? Explicabo temporibus
-                                repellendus eveniet rerum minima, expedita amet
-                                dicta distinctio impedit at? Corrupti voluptates
-                                architecto delectus magni non praesentium
-                                adipisci vitae iure, dolorum eaque maiores!
-                                Minima laboriosam facilis fugit in fugiat dolore
-                                ducimus impedit animi odit aliquid, officiis
-                                voluptate cum, debitis molestiae praesentium
-                                neque reprehenderit! Quo quod dolorem explicabo
-                                libero tempore aut sint quos ab beatae
-                                consequuntur error amet repellendus,
-                                reprehenderit unde maiores odio rerum inventore
-                                soluta distinctio et temporibus perspiciatis.
-                                Voluptatibus excepturi pariatur velit quis illum
-                                minima veniam!
+                                blanditiis quisquam.
                             </p>
                         </div>
                         <LoginForm />
